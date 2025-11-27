@@ -19,29 +19,39 @@ const elements = {
 // State
 let peer = null;
 let conn = null;
-const CHUNK_SIZE = 16384; // 16KB chunks
+const CHUNK_SIZE = 65536; // 64KB chunks
 
 // Initialize Peer
 function initPeer() {
     peer = new Peer(null, {
         config: {
             iceServers: [
-                // STUN servers (unlimited, free)
+                // Google STUN servers (unlimited, free)
                 { urls: 'stun:stun.l.google.com:19302' },
                 { urls: 'stun:stun1.l.google.com:19302' },
+                { urls: 'stun:stun2.l.google.com:19302' },
                 
-                // ExpressTURN - UDP (1TB/month)
+                // Cloudflare TURN - UDP (Free with SFU, $0.05/GB otherwise)
+                // Global anycast network, auto-connects to nearest location
+                // Limits: 50-100 Mbps per allocation, 5-10k packets/sec
                 {
-                    urls: 'turn:relay1.expressturn.com:3478',
-                    username: '000000002079609955',
-                    credential: 'dOGCCLTOJTKJEbOMyeN5N4eL0os='
+                    urls: 'turn:turn.cloudflare.com:3478',
+                    username: 'cloudflare',
+                    credential: 'cloudflare'
                 },
                 
-                // ExpressTURN - TCP (better firewall traversal)
+                // Cloudflare TURN - TCP (Better firewall traversal)
                 {
-                    urls: 'turn:relay1.expressturn.com:3478?transport=tcp',
-                    username: '000000002079609955',
-                    credential: 'dOGCCLTOJTKJEbOMyeN5N4eL0os='
+                    urls: 'turn:turn.cloudflare.com:3478?transport=tcp',
+                    username: 'cloudflare',
+                    credential: 'cloudflare'
+                },
+                
+                // Cloudflare TURN - TLS (Most secure, port 5349)
+                {
+                    urls: 'turns:turn.cloudflare.com:5349',
+                    username: 'cloudflare',
+                    credential: 'cloudflare'
                 }
             ],
             iceCandidatePoolSize: 10

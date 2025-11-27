@@ -24,6 +24,11 @@ A secure, serverless, peer-to-peer file transfer application built with **HTML, 
 - **Frontend**: HTML5, CSS3 (Glassmorphism), JavaScript (ES6+)
 - **WebRTC Library**: [PeerJS](https://peerjs.com/)
 - **STUN Servers**: Google Public STUN
+- **TURN Servers**: [Cloudflare Realtime TURN](https://developers.cloudflare.com/realtime/turn/)
+  - Global anycast network (auto-connects to nearest location)
+  - Free tier available
+  - 50-100 Mbps per connection
+  - UDP, TCP, and TLS support
 
 ## Deployment
 This project is a static web application and can be deployed freely on:
