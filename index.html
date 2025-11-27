@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeerShare | Secure P2P File Transfer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-share-nodes"></i>
+                <h1>PeerShare</h1>
+            </div>
+            <div class="status-badge" id="connection-status">
+                <span class="status-dot"></span>
+                <span class="status-text">Disconnected</span>
+            </div>
+        </header>
+
+        <main>
+            <section class="card glass-panel" id="identity-section">
+                <h2><i class="fa-regular fa-id-card"></i> Your Identity</h2>
+                <p class="helper-text">Share this ID with your peer to establish a connection.</p>
+                
+                <div class="id-display-container">
+                    <div class="loader" id="id-loader"></div>
+                    <span id="my-peer-id" class="hidden">Generating ID...</span>
+                    <button id="copy-id-btn" class="icon-btn" title="Copy ID">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </section>
+
+            <section class="card glass-panel" id="connect-section">
+                <h2><i class="fa-solid fa-link"></i> Connect to Peer</h2>
+                <p class="helper-text">Enter the Peer ID of the person you want to send files to.</p>
+                
+                <div class="input-group">
+                    <input type="text" id="remote-peer-id" placeholder="Enter Remote Peer ID">
+                    <button id="connect-btn" class="primary-btn">
+                        Connect <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <section class="card glass-panel hidden" id="transfer-section">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-file-export"></i> File Transfer</h2>
+                    <button id="disconnect-btn" class="danger-btn-text">Disconnect</button>
+                </div>
+                
+                <div class="drop-zone" id="drop-zone">
+                    <div class="drop-content">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <h3>Drag & Drop files here</h3>
+                        <p>or <span class="browse-link">browse</span> to upload</p>
+                        <input type="file" id="file-input" multiple hidden>
+                    </div>
+                </div>
+
+                <div class="transfers-list" id="transfers-list">
+                    <!-- Transfer items will be added here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
