@@ -29,29 +29,19 @@ function initPeer() {
                 // Google STUN servers (unlimited, free)
                 { urls: 'stun:stun.l.google.com:19302' },
                 { urls: 'stun:stun1.l.google.com:19302' },
-                { urls: 'stun:stun2.l.google.com:19302' },
                 
-                // Cloudflare TURN - UDP (Free with SFU, $0.05/GB otherwise)
-                // Global anycast network, auto-connects to nearest location
-                // Limits: 50-100 Mbps per allocation, 5-10k packets/sec
+                // ExpressTURN - UDP (1TB/month)
                 {
-                    urls: 'turn:turn.cloudflare.com:3478',
-                    username: 'cloudflare',
-                    credential: 'cloudflare'
+                    urls: 'turn:relay1.expressturn.com:3478',
+                    username: '000000002079609955',
+                    credential: 'dOGCCLTOJTKJEbOMyeN5N4eL0os='
                 },
                 
-                // Cloudflare TURN - TCP (Better firewall traversal)
+                // ExpressTURN - TCP (better firewall traversal)
                 {
-                    urls: 'turn:turn.cloudflare.com:3478?transport=tcp',
-                    username: 'cloudflare',
-                    credential: 'cloudflare'
-                },
-                
-                // Cloudflare TURN - TLS (Most secure, port 5349)
-                {
-                    urls: 'turns:turn.cloudflare.com:5349',
-                    username: 'cloudflare',
-                    credential: 'cloudflare'
+                    urls: 'turn:relay1.expressturn.com:3478?transport=tcp',
+                    username: '000000002079609955',
+                    credential: 'dOGCCLTOJTKJEbOMyeN5N4eL0os='
                 }
             ],
             iceCandidatePoolSize: 10
